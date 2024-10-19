@@ -10,8 +10,8 @@ var (
 
 func initRedis() {
 	rdb := redis.NewClient(&redis.Options{
-		Addr:     GetStringEnv("REDIS_HOST", DeafultString("localhost")),
-		Password: GetStringEnv("REDIS_PASSWORD", DeafultString("")),
+		Addr:     GetStringEnv("REDIS_HOST", DefaultString("localhost")),
+		Password: GetStringEnv("REDIS_PASSWORD", DefaultString("")),
 		DB:       0,
 	})
 

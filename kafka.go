@@ -9,7 +9,7 @@ import (
 )
 
 var (
-	seeds = []string{GetStringEnv("KAFKA_BROKER", DeafultString("localhost:9092"))}
+	seeds = []string{GetStringEnv("KAFKA_BROKER", DefaultString("localhost:9092"))}
 	Mq    *kgo.Client
 )
 

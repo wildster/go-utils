@@ -11,7 +11,7 @@ var (
 )
 
 func initDB() {
-	dbURL := GetStringEnv("PG_LOCAL_DB_URL", DeafultString("localhost"))
+	dbURL := GetStringEnv("PG_LOCAL_DB_URL", DefaultString("localhost"))
 
 	db, err := sql.Open("pgx", dbURL)
 

@@ -5,7 +5,7 @@ import (
 	"strconv"
 )
 
-func DeafultString(s string) *string {
+func DefaultString(s string) *string {
 	val := s
 
 	return &val
