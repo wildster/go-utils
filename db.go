@@ -10,8 +10,8 @@ var (
 	DB *sql.DB
 )
 
-func initDB() {
-	dbURL := GetStringEnv("PG_LOCAL_DB_URL", DefaultString("localhost"))
+func init() {
+	dbURL := GetStringEnv("PG_DB_URL", DefaultString("localhost"))
 
 	db, err := sql.Open("pgx", dbURL)
 
