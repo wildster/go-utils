@@ -18,7 +18,7 @@ type KafkaOption struct {
 	consumerGroup string
 }
 
-func createKafkaClient(opt *KafkaOption, consumeTopic []string) {
+func CreateKafkaClient(opt *KafkaOption, consumeTopic []string) {
 	cl, err := kgo.NewClient(
 		kgo.SeedBrokers(seeds...),
 		kgo.ConsumerGroup(opt.consumerGroup),
