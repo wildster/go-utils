@@ -16,14 +16,15 @@ var (
 
 type KafkaOption struct {
 	consumerGroup string
+	topics        []string
 }
 
-func CreateKafkaClient(opt *KafkaOption, consumeTopic []string) {
+func CreateKafkaClient(opt *KafkaOption) {
 	cl, err := kgo.NewClient(
 		kgo.SeedBrokers(seeds...),
 		kgo.ConsumerGroup(opt.consumerGroup),
 		kgo.HeartbeatInterval(time.Second*1),
-		kgo.ConsumeTopics(consumeTopic...),
+		kgo.ConsumeTopics(opt.topics...),
 		kgo.SASL(plain.Auth{
 			User: GetStringEnv("KAFKA_USER_NAME", nil),
 			Pass: GetStringEnv("KAFKA_PASSWORD", nil),
