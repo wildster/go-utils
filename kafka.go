@@ -9,21 +9,21 @@ import (
 )
 
 var (
-	seeds = []string{GetStringEnv("KAFKA_BROKER", DefaultString("localhost:9092"))}
-	Mq    *kgo.Client
+	seeds      = []string{GetStringEnv("KAFKA_BROKER", DefaultString("localhost:9092"))}
+	Mq         *kgo.Client
+	ErrorTopic = "kafka_application_error"
 )
 
 type KafkaOption struct {
 	consumerGroup string
-	topics        []string
 }
 
-func createKafkaClient(opt *KafkaOption) {
+func createKafkaClient(opt *KafkaOption, consumeTopic []string) {
 	cl, err := kgo.NewClient(
 		kgo.SeedBrokers(seeds...),
 		kgo.ConsumerGroup(opt.consumerGroup),
 		kgo.HeartbeatInterval(time.Second*1),
-		kgo.ConsumeTopics(opt.topics...),
+		kgo.ConsumeTopics(consumeTopic...),
 		kgo.SASL(plain.Auth{
 			User: GetStringEnv("KAFKA_USER_NAME", nil),
 			Pass: GetStringEnv("KAFKA_PASSWORD", nil),
